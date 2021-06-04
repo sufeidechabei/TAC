@@ -40,8 +40,6 @@ class TACSystem(System):
         # each example can have a varying number of microphone channels (can come from different arrays).
         # e.g. [[2], [4], [1]] three examples with 2 mics 4 mics and 1 mics.
         est_targets = self.model(inputs, valid_channels)
-        pytorch_total_params = sum(p.numel() for p in self.model.parameters())
-        print(pytorch_total_params)
 
         loss = self.loss_func(est_targets, targets).mean()  # first channel is used as ref
         return loss
